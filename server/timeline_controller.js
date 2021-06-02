@@ -12,7 +12,15 @@ module.exports = {
         .catch( err => {
             console.log(err)
         });
+    },
+
+    getAll: (req, res) => {
+
+    },
+
+    create: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const {name, }
+        dbInstance.create_timeline();
     }
-
-
 };

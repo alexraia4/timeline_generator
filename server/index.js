@@ -34,6 +34,7 @@ app.post("/auth/register", auth_controller.register);
 app.post("/auth/login", auth_controller.login);
 app.post("/auth/logout", auth_controller.logout);
 
+app.post("/api/newtimeline", timeline_controller.create)
 app.get("/api/timeline/:id", timeline_controller.getOne);
 
 
