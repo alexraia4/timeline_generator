@@ -29,9 +29,6 @@ CREATE TABLE IF NOT EXISTS timeline_event (
     created           TIMESTAMP
 );
 
-INSERT INTO tool_user (user_name, hash, created)
-VALUES ('admin', 'derp', CURRENT_TIMESTAMP(0));
-
 INSERT INTO timeline (name, tool_user_id, start_year, created)
 VALUES ('My Life', 1, 1996, CURRENT_TIMESTAMP(0));
 
@@ -61,12 +58,3 @@ VALUES ('I Have A Dream Speech', 2, 'Martin Luther King, Jr., delivered his icon
 
 INSERT INTO timeline_event (name, timeline_id, content, year, month, day, created)
 VALUES ('Moon Landing', 2, 'American astronauts Neil Armstrong and Edwin "Buzz" Aldrin became the first humans ever to land on the moon.', 1969, 7, 20, CURRENT_TIMESTAMP(0));
-
-SELECT * FROM tool_user;
-SELECT * FROM timeline;
-
-SELECT t.name, te.name, te.year 
-FROM timeline t
-JOIN timeline_event te
-ON t.timeline_id = te.timeline_id
-ORDER BY te.year;
