@@ -22,7 +22,7 @@ module.exports = {
 
     login: async (req, res) => {
         const { username, password } = req.body;
-        const foundUser = await req.app.get('db').auth.get_user([username]);
+        const foundUser = await req.app.get('db').auth.read_user([username]);
         const user = foundUser[0];
         if (!user) {
           return res.status(401).send('User not found');
@@ -40,12 +40,21 @@ module.exports = {
         return res.sendStatus(200);
     },
 
-    edit: (req, res) => {
-        console.log("derp");
+    update: (req, res) => {
+        const { username, password, uid} = req.body;
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        const registeredUser = req.app.get('db').auth.update_user([username, hash, uid]);
+        const user = registeredUser[0];
+        req.session.user = {username: user.user_name, id: user.tool_user_id}
+        return res.status(201).send(req.session.user);
     },
 
     delete: (req, res) => {
-        console.log("derp");
+        const {uid} = req.body;
+        this.logout;
+        req.app.get('db').auth.delete_user([uid]);
+        return res.sendStatus(200);
     }
 
 }

@@ -12,7 +12,7 @@ module.exports = {
         console.log("derp");
     },
 
-    edit: (req, res) => {
+    update: (req, res) => {
         console.log("derp");
     },
 

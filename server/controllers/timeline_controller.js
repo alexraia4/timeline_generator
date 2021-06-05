@@ -36,7 +36,7 @@ module.exports = {
         
     },
 
-    edit: (req, res) => {
+    update: (req, res) => {
         console.log("derp");
     },
 
