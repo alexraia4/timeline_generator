@@ -36,8 +36,8 @@ app.use(
 app.post("/auth/register",                                                      auth_controller.register);
 app.post("/auth/login",                                                         auth_controller.login);
 app.post("/auth/logout",               auth.usersOnly,                          auth_controller.logout);
-app.put("/auth/edituser/:uid",         auth.usersOnly, auth.isThisMe,           auth_controller.update);
-app.delete("/auth/delete/:uid",        auth.usersOnly, auth.isThisMe,           auth_controller.delete);
+app.put("/auth/updateuser/",           auth.usersOnly,                          auth_controller.update);
+app.delete("/auth/delete",             auth.usersOnly,                          auth_controller.delete);
 
 app.post("/api/newtimeline",           auth.usersOnly,                          timeline_controller.create);
 app.get("/api/timeline/:tid",          auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);

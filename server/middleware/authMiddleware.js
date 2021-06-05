@@ -6,12 +6,6 @@ module.exports = {
       next();
     },
 
-    isThisMe: (req, res, next) => {
-      if (req.session.user.id != req.params.uid) {
-        return res.status(401).send('bro, thats not your user profile to mess with!!!');
-      }
-      next();
-    },
 
     doIownThisTimeline: (req, res, next) => {
       if (2 === 2) {
