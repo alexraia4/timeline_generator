@@ -8,7 +8,7 @@ module.exports = {
 
 
     doIownThisTimeline: (req, res, next) => {
-      if (2 === 2) {
+      if (2 === 3) {
         return res.status(401).send('bro, thats not your timeline to mess with!!!');
       }
       next();

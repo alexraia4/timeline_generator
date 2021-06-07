@@ -2,14 +2,14 @@ DROP TABLE IF EXISTS tool_user, timeline, timeline_event;
 
 CREATE TABLE IF NOT EXISTS tool_user (
     tool_user_id SERIAL PRIMARY KEY,
-    user_name    VARCHAR,
-    hash         VARCHAR,
+    user_name    VARCHAR NOT NULL,
+    hash         VARCHAR NOT NULL,
     created      TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS timeline (
     timeline_id  SERIAL PRIMARY KEY,
-    name         VARCHAR,
+    name         VARCHAR NOT NULL,
     tool_user_id INT,
     start_year   INT,
     end_year     INT,
@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS timeline (
 
 CREATE TABLE IF NOT EXISTS timeline_event (
     timeline_event_id SERIAL PRIMARY KEY,
-    name              VARCHAR,
+    name              VARCHAR NOT NULL,
     timeline_id       INT,
-    content           TEXT,
+    content           TEXT NOT NULL,
     year              INT,
     month             INT,
     day               INT,

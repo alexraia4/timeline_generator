@@ -33,23 +33,23 @@ app.use(
     })
 );
 
-app.post("/auth/register",                                                      auth_controller.register);
-app.post("/auth/login",                                                         auth_controller.login);
-app.post("/auth/logout",               auth.usersOnly,                          auth_controller.logout);
-app.put("/auth/updateuser/",           auth.usersOnly,                          auth_controller.update);
-app.delete("/auth/delete",             auth.usersOnly,                          auth_controller.delete);
+app.post(   "/auth/create"          ,                                          auth_controller.create);
+app.get(    "/auth/login"           ,                                          auth_controller.login);
+app.get(    "/auth/logout"          , auth.usersOnly,                          auth_controller.logout);
+app.put(    "/auth/update"          , auth.usersOnly,                          auth_controller.update);
+app.delete( "/auth/delete"          , auth.usersOnly,                          auth_controller.delete);
 
-app.post("/api/newtimeline",           auth.usersOnly,                          timeline_controller.create);
-app.get("/api/timeline/:tid",          auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);
-app.get("/api/timelines",              auth.usersOnly,                          timeline_controller.readAll);
-app.put("/api/edittimeline/:tid",      auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
-app.delete("/api/deletetimeline/:tid", auth.usersOnly, auth.doIownThisTimeline, timeline_controller.delete);
+app.post(   "/timeline/create"      , auth.usersOnly,                          timeline_controller.create);
+app.get(    "/timeline/readone/:tid", auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);
+app.get(    "/timeline/readall"     , auth.usersOnly,                          timeline_controller.readAll);
+app.put(    "/timeline/update/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
+app.delete( "/timeline/delete/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.delete);
 
-app.post("/api/newevent",              auth.usersOnly,                          event_controller.create);
-app.get("/api/event/:eid",             auth.usersOnly, auth.doIownThisEvent,    event_controller.readOne);
-app.get("/api/events/:tid",            auth.usersOnly, auth.doIownThisTimeline, event_controller.readAll);
-app.put("/api/editevent/:id",          auth.usersOnly, auth.doIownThisEvent,    event_controller.update);
-app.delete("/api/deleteevent/:id",     auth.usersOnly, auth.doIownThisEvent,    event_controller.delete);
+app.post(   "/event/create"         , auth.usersOnly,                          event_controller.create);
+app.get(    "/event/readone/:eid"   , auth.usersOnly, auth.doIownThisEvent   , event_controller.readOne);
+app.get(    "/event/readall/:tid"   , auth.usersOnly, auth.doIownThisTimeline, event_controller.readAll);
+app.put(    "/event/update/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.update);
+app.delete( "/event/delete/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.delete);
 
 
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}`));

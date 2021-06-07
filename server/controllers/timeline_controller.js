@@ -1,5 +1,17 @@
 module.exports = {
 
+    create: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const {name, startDate, endDate} = req.body;
+        const id = req.session.user.uid;
+        if (endDate) {
+            dbInstance.timeline.create_timeline_with_end([name, id, startDate, endDate]);
+        }
+        else {
+            dbInstance.timeline.create_timeline([name, id, startDate]);
+        }
+        return res.sendStatus(200);
+    },
 
     readOne: (req, res) => {
         const dbInstance = req.app.get('db');
@@ -12,35 +24,28 @@ module.exports = {
 
     readAll: (req, res) => {
         const dbInstance = req.app.get('db');
-        const id = req.session.user.id;
-        dbInstance.timeline.read_timelines([id])
+        const uid = req.session.user.uid;
+        dbInstance.timeline.read_timelines([uid])
         .then(timelines => res.status(200).send(timelines))
         .catch( err => console.log(err));
     },
 
-    create: (req, res) => {
+    update: (req, res) => {
         const dbInstance = req.app.get('db');
         const {name, startDate, endDate} = req.body;
-        const id = req.session.user.id;
-        
-        
+        const uid = req.session.user.uid;
+        const tid = req.params.tid;
         if (endDate) {
-            dbInstance.timeline.create_timeline_with_end([name, id, startDate, endDate]);
+            dbInstance.timeline.update_timeline_with_end([name, uid, startDate, endDate, tid]);
         }
         else {
-            dbInstance.timeline.create_timeline([name, id, startDate]);
+            dbInstance.timeline.update_timeline([name, uid, startDate, tid]);
         }
-        
-        return res.sendStatus(200);
-        
-        
-    },
-
-    update: (req, res) => {
-        console.log("derp");
+        return res.status(200).send("Updated!!");
     },
 
     delete: (req, res) => {
-        console.log("derp");
+        req.app.get('db').timeline.delete_timeline([req.params.tid]);
+        return res.sendStatus(200);
     }
 };
