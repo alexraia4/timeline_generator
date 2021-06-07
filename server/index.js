@@ -42,14 +42,14 @@ app.delete( "/auth/delete"          , auth.usersOnly,                          a
 app.post(   "/timeline/create"      , auth.usersOnly,                          timeline_controller.create);
 app.get(    "/timeline/readone/:tid", auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);
 app.get(    "/timeline/readall"     , auth.usersOnly,                          timeline_controller.readAll);
-app.put(    "/timeline/update/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
+//app.put(    "/timeline/update/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
 app.delete( "/timeline/delete/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.delete);
 
 app.post(   "/event/create/:tid"    , auth.usersOnly, auth.doIownThisTimeline, event_controller.create);
 app.get(    "/event/readone/:eid"   , auth.usersOnly, auth.doIownThisEvent   , event_controller.readOne);
 app.get(    "/event/readall/:tid"   , auth.usersOnly, auth.doIownThisTimeline, event_controller.readAll);
-app.put(    "/event/update/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.update);
-app.delete( "/event/delete/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.delete);
+//app.put(    "/event/update/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.update);
+//app.delete( "/event/delete/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.delete);
 
 
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}`));
