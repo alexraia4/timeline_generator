@@ -15,7 +15,7 @@ module.exports = {
     },
 
     doIownThisEvent: (req, res, next) => {
-      if (2 === 2) {
+      if (2 === 3) {
         return res.status(401).send('bro, thats not your event to mess with!!!');
       }
       next();

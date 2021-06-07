@@ -45,7 +45,7 @@ app.get(    "/timeline/readall"     , auth.usersOnly,                          t
 app.put(    "/timeline/update/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
 app.delete( "/timeline/delete/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.delete);
 
-app.post(   "/event/create"         , auth.usersOnly,                          event_controller.create);
+app.post(   "/event/create/:tid"    , auth.usersOnly, auth.doIownThisTimeline, event_controller.create);
 app.get(    "/event/readone/:eid"   , auth.usersOnly, auth.doIownThisEvent   , event_controller.readOne);
 app.get(    "/event/readall/:tid"   , auth.usersOnly, auth.doIownThisTimeline, event_controller.readAll);
 app.put(    "/event/update/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.update);
