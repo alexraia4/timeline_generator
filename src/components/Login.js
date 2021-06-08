@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {loginUser} from '../redux/user_reducer.js';
 
 class Login extends Component {
     
@@ -23,7 +25,7 @@ class Login extends Component {
                 alert (user.data);
             }
             else{
-                console.log(user.data);
+                this.props.loginUser(user.data);
                 this.props.history.push("/home");
             }
         })
@@ -36,9 +38,10 @@ class Login extends Component {
         const {username, password} = this.state;
         axios.post('http://localhost:3001/auth/create', {username, password})
         .then(user => {
-            console.log(user.data);
+            this.props.loginUser(user.data);
+            this.props.history.push("/home");
         })
-        this.props.history.push("/home");
+        
     }
     
     updateUser (value) {
@@ -50,9 +53,9 @@ class Login extends Component {
             <div className = "login">
                 <p>Timeline Generation tool</p>
                 <p>Email</p>
-                <input onChange = {e => this.setState({username: e.target.value})}/>
+                <input type = "text" onChange = {e => this.setState({username: e.target.value})}/>
                 <p>Password</p>
-                <input onChange = {e => this.setState({password: e.target.value})}/>
+                <input type = "text" onChange = {e => this.setState({password: e.target.value})}/>
                 <div className = "loginButtons">
                     <button onClick={this.login}>Login</button>
                     <button onClick={this.register}>Register</button>
@@ -63,4 +66,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default connect(null, {loginUser})(Login);

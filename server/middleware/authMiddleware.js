@@ -1,7 +1,7 @@
 module.exports = {
     usersOnly: (req, res, next) => {
       if (!req.session.user) {
-        return res.status(401).send('bro, ya gotta log in first');
+        return res.status(201).send('bro, ya gotta log in first');
       }
       next();
     },

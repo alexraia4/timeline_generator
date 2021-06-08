@@ -33,6 +33,7 @@ module.exports = {
           return res.status(201).send('wrong password bro');
         }
         req.session.user = {username: user.user_name, uid: user.tool_user_id}
+        console.log(req.session.user)
         return res.status(201).send(req.session.user);
         
     },
