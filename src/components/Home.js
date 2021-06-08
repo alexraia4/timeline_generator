@@ -14,13 +14,13 @@ class Home extends Component {
     componentDidMount(){
         axios.get('/timeline/readall')
         .then(timelines => {
-            //this.setState = {timelines: timelines};
-            console.log(timelines.data);
+            this.setState({timelines: timelines.data});
         })
     }
-    
+
     
     render() {
+        console.log("state", this.state.timelines);
         return (
             <div className = "home">
                 <header>

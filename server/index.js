@@ -43,9 +43,9 @@ massive({
 
 app.post(   "/auth/create"          ,                                          auth_controller.create);
 app.post(   "/auth/login"           ,                                          auth_controller.login);
-//app.get(    "/auth/logout"          , auth.usersOnly,                          auth_controller.logout);
+app.get(    "/auth/logout"          , auth.usersOnly,                          auth_controller.logout);
 app.put(    "/auth/update"          , auth.usersOnly,                          auth_controller.update);
-//app.delete( "/auth/delete"          , auth.usersOnly,                          auth_controller.delete);
+app.delete( "/auth/delete"          , auth.usersOnly,                          auth_controller.delete);
 
 app.post(   "/timeline/create"      , auth.usersOnly,                          timeline_controller.create);
 app.get(    "/timeline/readone/:tid", auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);

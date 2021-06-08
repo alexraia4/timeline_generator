@@ -19,7 +19,6 @@ module.exports = {
 
     readAll: (req, res) => {
         const dbInstance = req.app.get('db');
-        console.log("read all", req.session);
         const uid = req.session.user.uid;
         dbInstance.timeline.read_timelines([uid])
         .then(timelines => res.status(200).send(timelines))
