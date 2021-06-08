@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const cors                = require("cors")
 const massive             = require("massive");
 const express             = require("express");
 const session             = require('express-session');
@@ -13,6 +14,7 @@ const app = express();
 const { SESSION_SECRET, SERVER_PORT, CONNECTION_STRING } = process.env;
 
 app.use(express.json());
+app.use(cors());
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -34,7 +36,7 @@ app.use(
 );
 
 app.post(   "/auth/create"          ,                                          auth_controller.create);
-app.get(    "/auth/login"           ,                                          auth_controller.login);
+app.post(    "/auth/login"          ,                                          auth_controller.login);
 app.get(    "/auth/logout"          , auth.usersOnly,                          auth_controller.logout);
 app.put(    "/auth/update"          , auth.usersOnly,                          auth_controller.update);
 app.delete( "/auth/delete"          , auth.usersOnly,                          auth_controller.delete);

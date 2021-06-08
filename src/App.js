@@ -1,12 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
 import { Component } from 'react';
-import Login from './components/Login.js'
+import {HashRouter, Link} from "react-router-dom"
+import routes from './routes.js';
 
 class App extends Component{
   render() {
     return (
-      <Login />
+      <div className = "App">
+        <HashRouter>
+          {routes}
+        </HashRouter>
+      </div>
+      
     )
   }
     
