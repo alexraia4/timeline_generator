@@ -14,7 +14,7 @@ class Login extends Component {
         this.updateUser = this.updateUser.bind(this);
         this.login = this.login.bind(this);
         this.register = this.register.bind(this);
-      }
+    }
     
     
     login() {

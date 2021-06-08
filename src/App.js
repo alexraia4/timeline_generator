@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {HashRouter, Link} from "react-router-dom"
+import {HashRouter} from "react-router-dom"
 import routes from './routes.js';
 
 class App extends Component{
