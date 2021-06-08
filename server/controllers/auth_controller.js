@@ -17,6 +17,7 @@ module.exports = {
         const registeredUser = await db.auth.create_user(username, hash);
         const user = registeredUser[0];
         req.session.user = {username: user.user_name, uid: user.tool_user_id}
+        console.log("login", req.session.user);
         return res.status(201).send(req.session.user);
     },
 
@@ -33,7 +34,7 @@ module.exports = {
           return res.status(201).send('wrong password bro');
         }
         req.session.user = {username: user.user_name, uid: user.tool_user_id}
-        console.log(req.session.user)
+        console.log("login", req.session);
         return res.status(201).send(req.session.user);
         
     },

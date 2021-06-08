@@ -14,7 +14,19 @@ const app = express();
 const { SESSION_SECRET, SERVER_PORT, CONNECTION_STRING } = process.env;
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors({
+//     credentials: true
+// }));
+app.use(
+    session({
+        resave: false,
+        saveUninitialized: true,
+        secret: SESSION_SECRET,
+        cookie: {
+            maxAge: 1000*60*24*60
+        }
+    })
+);
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -27,23 +39,17 @@ massive({
 .catch(err => console.log(err));
 
 
-app.use(
-    session({
-        resave: true,
-        saveUninitialized: false,
-        secret: SESSION_SECRET,
-    })
-);
+
 
 app.post(   "/auth/create"          ,                                          auth_controller.create);
-app.post(    "/auth/login"          ,                                          auth_controller.login);
-app.get(    "/auth/logout"          , auth.usersOnly,                          auth_controller.logout);
+app.post(   "/auth/login"           ,                                          auth_controller.login);
+//app.get(    "/auth/logout"          , auth.usersOnly,                          auth_controller.logout);
 app.put(    "/auth/update"          , auth.usersOnly,                          auth_controller.update);
-app.delete( "/auth/delete"          , auth.usersOnly,                          auth_controller.delete);
+//app.delete( "/auth/delete"          , auth.usersOnly,                          auth_controller.delete);
 
 app.post(   "/timeline/create"      , auth.usersOnly,                          timeline_controller.create);
 app.get(    "/timeline/readone/:tid", auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);
-app.get(    "/timeline/readall"     , /*auth.usersOnly, */                         timeline_controller.readAll);
+app.get(    "/timeline/readall"     , timeline_controller.readAll);
 //app.put(    "/timeline/update/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
 app.delete( "/timeline/delete/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.delete);
 

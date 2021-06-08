@@ -19,14 +19,14 @@ class Login extends Component {
     
     login() {
         const {username, password} = this.state;
-        axios.post('http://localhost:3001/auth/login', {username, password})
+        axios.post('/auth/login', {username, password})
         .then(user => {
             if (user.data === "User not found" || user.data === "wrong password bro"){
                 alert (user.data);
             }
             else{
                 this.props.loginUser(user.data);
-                this.props.history.push("/home");
+                //this.props.history.push("/home");
             }
         })
         
@@ -36,7 +36,7 @@ class Login extends Component {
 
     register() {
         const {username, password} = this.state;
-        axios.post('http://localhost:3001/auth/create', {username, password})
+        axios.post('/auth/create', {username, password})
         .then(user => {
             this.props.loginUser(user.data);
             this.props.history.push("/home");

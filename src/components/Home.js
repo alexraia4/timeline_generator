@@ -12,10 +12,10 @@ class Home extends Component {
       }
 
     componentDidMount(){
-        axios.get('http://localhost:3001/timeline/readall')
+        axios.get('/timeline/readall')
         .then(timelines => {
             //this.setState = {timelines: timelines};
-            console.log(timelines);
+            console.log(timelines.data);
         })
     }
     
