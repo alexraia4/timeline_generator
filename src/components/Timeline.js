@@ -2,54 +2,45 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import '../css/timeline.css';
+
 
 class Home extends Component {
     
     constructor() {
         super();
         this.state = {
-          timelines: []
+          timeline: {},
+          events: [],
+          yearsToRender: 0
         };
-        this.logout = this.logout.bind(this);
-    }
-
-    componentDidMount(){
-        axios.get('/timeline/readall')
-        .then(timelines => {
-            this.setState({timelines: timelines.data});
-        })
-    }
-
-    logout() {
-        const {username, password} = this.state;
-        axios.get('/auth/logout')
-        .then(thing => {
-            this.props.history.push("/");
-        })
-        
-    
-        
+       
     }
     
+    componentDidMount() {
+        
+        axios.get(`/timeline/readone/${this.props.match.params.tid}`)
+        .then(timeline => {
+            this.setState({timeline: timeline.data[0]});
+        })
+
+        axios.get(`/event/readall/${this.props.match.params.tid}`)
+        .then(events => {
+            this.setState({events: events.data});
+        })
+        
+    }
+
+
     render() {
 
-        const timelineLinks = this.state.timelines.map((timeline, i) => (
-            <Link key = { i }> <p>-{timeline.name}</p> </Link> 
-        )
-
-        );
-        
         return (
-            <div className = "home">
-                <header>
-                    <p>Have fun creating, {this.props.user.username}</p>
-                </header>
-                <p>My Timelines</p>
-                <div className = "homePageTimelines">
-                    {timelineLinks}
+            <div className = "timelineComp">
+                <div className = "topRow">
+                    <Link to = {"/home"}>Back</Link>
+                    <p>{this.state.timeline.name}</p>
+                    <Link to = {"/home"}>Add Event</Link>
                 </div>
-                <Link to = {"/createnewtimeline"}>Create</Link>
-                <button onClick = {this.logout}>Logout</button>
                 
             </div>
             

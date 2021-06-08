@@ -32,10 +32,10 @@ class Home extends Component {
                 <input type = "text" onChange = {e => this.setState({name: e.target.value})}/>
                 
                 <p>Start Year:</p>
-                <input type = "text" onChange = {e => this.setState({startYear: e.target.value})}/>
+                <input type = "text" onChange = {e => this.setState({startDate: e.target.value})}/>
 
                 <p>End Year:</p>
-                <input type = "text" placeholder="optional" onChange = {e => this.setState({startYear: e.target.value})}/>
+                <input type = "text" placeholder="optional" onChange = {e => this.setState({endDate: e.target.value})}/>
 
                 <button onClick = {this.create}>Create</button>
                 <Link to = {"/home"}>Back</Link>

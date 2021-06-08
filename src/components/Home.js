@@ -21,7 +21,6 @@ class Home extends Component {
     }
 
     logout() {
-        const {username, password} = this.state;
         axios.get('/auth/logout')
         .then(thing => {
             this.props.history.push("/");
@@ -34,7 +33,7 @@ class Home extends Component {
     render() {
 
         const timelineLinks = this.state.timelines.map((timeline, i) => (
-            <Link key = { i }> <p>-{timeline.name}</p> </Link> 
+            <Link to = {`/timeline/${timeline.timeline_id}`} key = { i }> <p>-{timeline.name}</p> </Link> 
         )
 
         );
