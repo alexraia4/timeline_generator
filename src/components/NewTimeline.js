@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-class Home extends Component {
+class NewTimeline extends Component {
     
     constructor() {
         super();
@@ -45,6 +45,6 @@ class Home extends Component {
         )
     }
 }
-const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(Home);
+
+export default NewTimeline;

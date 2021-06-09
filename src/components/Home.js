@@ -24,19 +24,20 @@ class Home extends Component {
         axios.get('/auth/logout')
         .then(thing => {
             this.props.history.push("/");
-        })
-        
-    
-        
+        })       
     }
+
+    
     
     render() {
 
         const timelineLinks = this.state.timelines.map((timeline, i) => (
-            <Link to = {`/timeline/${timeline.timeline_id}`} key = { i }> <p>-{timeline.name}</p> </Link> 
-        )
-
-        );
+            <div className = "home_timeline">
+                <Link to = {`/timeline/${timeline.timeline_id}`} key = { i }> <p>-{timeline.name}</p> </Link>
+                <Link to = {'/home'}><button>Edit</button></Link>
+                <Link to = {`/deletetimeline/${timeline.timeline_id}`}><button>Delete</button></Link>
+            </div>
+        ));
         
         return (
             <div className = "home">

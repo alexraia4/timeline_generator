@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import '../css/timeline.css';
 
 
-class Home extends Component {
+class Timeline extends Component {
     
     constructor() {
         super();
@@ -100,6 +100,5 @@ class Home extends Component {
         )
     }
 }
-const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(Home);
+export default Timeline;
