@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {loginUser} from '../redux/user_reducer.js';
+import '../css/login.css';
 
 class Login extends Component {
     
@@ -51,11 +52,23 @@ class Login extends Component {
     render() {
         return (
             <div className = "login">
-                <p>Timeline Generation tool</p>
-                <p>Email</p>
-                <input type = "text" onChange = {e => this.setState({username: e.target.value})}/>
-                <p>Password</p>
-                <input type = "text" onChange = {e => this.setState({password: e.target.value})}/>
+                
+                <div className = "login_title">
+                    <h1 >Timeline Generation tool</h1>
+                    <p>by alex raia</p>
+                </div>
+                
+                
+                <div className = "login_email">
+                    <p>Email</p>
+                    <input type = "text" onChange = {e => this.setState({username: e.target.value})}/>
+                </div>
+                
+                <div className = "login_password">
+                    <p>Password</p>
+                    <input type = "password" onChange = {e => this.setState({password: e.target.value})}/>
+                </div>
+                
                 <div className = "loginButtons">
                     <button onClick={this.login}>Login</button>
                     <button onClick={this.register}>Register</button>
