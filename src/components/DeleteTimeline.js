@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import "../css/deletetimeline.css";
 
 class DeleteTimeLine extends Component {
     
@@ -31,9 +32,12 @@ class DeleteTimeLine extends Component {
         
         return (
             <div className = "deleteTimeline">
-                <h2>Are you sure you want to delete this timeline????</h2>
-                <button onClick = {this.deleteTimeline}>Yes, Proceed</button>
-                <button onClick = {this.goBackToHome}>Cancel</button>
+                <h2 className = "deleteTimeline_areYouSure">Are you sure you want to delete this timeline????</h2>
+                <div className = "deleteTimeline_buttons">
+                    <button onClick = {this.deleteTimeline} className = "deleteTimeline_button">Yes, Proceed</button>
+                    <button onClick = {this.goBackToHome} className = "deleteTimeline_button">Cancel</button>
+                </div>
+                
             </div>
             
         )

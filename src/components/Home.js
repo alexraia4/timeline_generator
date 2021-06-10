@@ -47,7 +47,7 @@ class Home extends Component {
                 <header>
                     <p>Have fun creating, {this.props.user.username}</p>
                 </header>
-                <p>My Timelines</p>
+                <p className = "home_myTimelines">My Timelines:</p>
                 <div className = "home_timelines">
                     {timelineLinks}
                 </div>

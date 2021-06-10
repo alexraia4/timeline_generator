@@ -1,0 +1,39 @@
+.editTimeline {
+    height: 50vh;
+    width: 30%;
+
+
+    margin-top: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    border-radius: 25px;
+    color: white;
+    background-color: rgb(13, 37, 37);
+}
+
+.editTimeline_buttons {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.editTimeline_button {
+    height: 40px;
+    width: 80px;
+
+    font-size: 0.7em;
+
+    color: white;
+    border: solid;
+    border-color: white;
+    border-width: 1px;
+    
+    background-color: rgb(13, 37, 37);
+
+    cursor: pointer;
+}

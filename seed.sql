@@ -33,7 +33,7 @@ INSERT INTO timeline (name, tool_user_id, start_year, created)
 VALUES ('My Life', 1, 1996, CURRENT_TIMESTAMP(0));
 
 INSERT INTO timeline (name, tool_user_id, start_year, created)
-VALUES ('Earth History', 1, 1900, CURRENT_TIMESTAMP(0));
+VALUES ('World History', 1, 1900, CURRENT_TIMESTAMP(0));
 
 INSERT INTO timeline_event (name, timeline_id, content, year, month, day, hour, second, created)
 VALUES ('Born', 1, 'The day I was born. It happend in Cincinnati, Ohio.', 1996, 7, 22, 19, 51, CURRENT_TIMESTAMP(0));
