@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import '../css/timeline.css';
@@ -86,9 +85,9 @@ class Timeline extends Component {
         return (
             <div className = "timelineComp">
                 <div className = "topRow">
-                    <Link to = {"/home"}>Back</Link>
-                    <p>{this.state.timeline.name}</p>
-                    <Link to = {`/createnewevent/${this.state.timeline.timeline_id}`}>Add Event</Link>
+                    <Link to = {"/home"}><button className = "timeline_button">Back</button></Link>
+                    <p className = "timelineComp_title">{this.state.timeline.name}</p>
+                    <Link to = {`/createnewevent/${this.state.timeline.timeline_id}`}><button className = "timeline_button">Add Event</button></Link>
                 </div>
 
                 <div className = "masterLine">

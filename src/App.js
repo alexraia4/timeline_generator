@@ -6,7 +6,7 @@ import './css/app.css';
 class App extends Component{
   render() {
     return (
-      <div className = "App">
+      <div className = "app">
         <HashRouter>
           {routes}
         </HashRouter>

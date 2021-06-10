@@ -54,8 +54,8 @@ class Login extends Component {
             <div className = "login">
                 
                 <div className = "login_title">
-                    <h1 >Timeline Generation tool</h1>
-                    <p>by alex raia</p>
+                    <h1 >Timeline Generation Tool</h1>
+                    <p className = "login_byAlex">by alex raia</p>
                 </div>
                 
                 
@@ -69,9 +69,9 @@ class Login extends Component {
                     <input type = "password" onChange = {e => this.setState({password: e.target.value})}/>
                 </div>
                 
-                <div className = "loginButtons">
-                    <button onClick={this.login}>Login</button>
-                    <button onClick={this.register}>Register</button>
+                <div className = "login_buttons">
+                    <button className = "login_button" onClick={this.login}>Login</button>
+                    <button className = "login_button" onClick={this.register}>Register</button>
                 </div>
             </div>
             

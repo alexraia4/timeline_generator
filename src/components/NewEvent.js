@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
@@ -41,7 +40,7 @@ class NewEvent extends Component {
                 <input type = "text" onChange = {e => this.setState({content: e.target.value})}/>
 
                 <button onClick = {this.create}>Create</button>
-                <Link to = {"/home"}>Back</Link>
+                <Link to = {`/timeline/${this.props.match.params.tid}`}>Back</Link>
                 
             </div>
             

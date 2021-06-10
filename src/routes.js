@@ -6,6 +6,7 @@ import NewTimeline from "./components/NewTimeline.js";
 import Timeline from "./components/Timeline.js";
 import NewEvent from "./components/NewEvent.js";
 import DeleteTimeline from "./components/DeleteTimeline.js";
+import EditTimeline from "./components/EditTimeline.js";
 
 
 export default (
@@ -16,5 +17,6 @@ export default (
         <Route component = {Timeline} path = "/timeline/:tid" />
         <Route component = {NewEvent} path = "/createnewevent/:tid" />
         <Route component = {DeleteTimeline} path = "/deletetimeline/:tid" />
+        <Route component = {EditTimeline} path = "/edittimeline/:tid" />
     </Switch>
 )

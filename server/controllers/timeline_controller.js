@@ -30,7 +30,7 @@ module.exports = {
         const {name, startDate, endDate} = req.body;
         const uid = req.session.user.uid;
         const tid = req.params.tid;
-        dbInstance.timeline.update([name, uid, startDate, endDate, tid]);
+        dbInstance.timeline.update_timeline([name, uid, startDate, endDate, tid]);
         return res.status(200).send("Updated!!");
     },
 

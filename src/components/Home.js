@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import '../css/home.css';
 
 class Home extends Component {
     
@@ -34,8 +35,10 @@ class Home extends Component {
         const timelineLinks = this.state.timelines.map((timeline, i) => (
             <div className = "home_timeline">
                 <Link to = {`/timeline/${timeline.timeline_id}`} key = { i }> <p>-{timeline.name}</p> </Link>
-                <Link to = {'/home'}><button>Edit</button></Link>
-                <Link to = {`/deletetimeline/${timeline.timeline_id}`}><button>Delete</button></Link>
+                <div className = "home_buttons">
+                    <Link to = {`/edittimeline/${timeline.timeline_id}`}><button className = "home_button">Edit</button></Link>
+                    <Link to = {`/deletetimeline/${timeline.timeline_id}`}><button className = "home_button">Delete</button></Link>
+                </div>
             </div>
         ));
         
@@ -45,11 +48,14 @@ class Home extends Component {
                     <p>Have fun creating, {this.props.user.username}</p>
                 </header>
                 <p>My Timelines</p>
-                <div className = "homePageTimelines">
+                <div className = "home_timelines">
                     {timelineLinks}
                 </div>
-                <Link to = {"/createnewtimeline"}>Create</Link>
-                <button onClick = {this.logout}>Logout</button>
+                <div className = "home_bottomButtons">
+                    <Link to = {"/createnewtimeline"}><button className = "home_bottomButton">Create</button></Link>
+                    <button onClick = {this.logout} className = "home_bottomButton">Logout</button>
+                </div>
+                
                 
             </div>
             

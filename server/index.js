@@ -50,7 +50,7 @@ app.delete( "/auth/delete"          , auth.usersOnly,                          a
 app.post(   "/timeline/create"      , auth.usersOnly,                          timeline_controller.create);
 app.get(    "/timeline/readone/:tid", auth.usersOnly, auth.doIownThisTimeline, timeline_controller.readOne);
 app.get(    "/timeline/readall"     , auth.usersOnly,                          timeline_controller.readAll);
-//app.put(    "/timeline/update/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.update);
+app.put(    "/timeline/update/:tid" , auth.usersOnly, /*auth.doIownThisTimeline,*/ timeline_controller.update);
 app.delete( "/timeline/delete/:tid" , auth.usersOnly, auth.doIownThisTimeline, timeline_controller.delete);
 
 app.post(   "/event/create/:tid"    , auth.usersOnly, auth.doIownThisTimeline, event_controller.create);
