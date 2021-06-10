@@ -53,6 +53,7 @@ class Home extends Component {
                 </div>
                 <div className = "home_bottomButtons">
                     <Link to = {"/createnewtimeline"}><button className = "home_bottomButton">Create</button></Link>
+                    <Link to = {"/timeline/2"}><button className = "home_bottomButton">World History</button></Link>
                     <button onClick = {this.logout} className = "home_bottomButton">Logout</button>
                 </div>
                 
