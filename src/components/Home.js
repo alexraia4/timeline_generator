@@ -33,8 +33,8 @@ class Home extends Component {
     render() {
 
         const timelineLinks = this.state.timelines.map((timeline, i) => (
-            <div className = "home_timeline">
-                <Link to = {`/timeline/${timeline.timeline_id}`} key = { i }> <p>-{timeline.name}</p> </Link>
+            <div className = "home_timeline" key = { i }>
+                <Link to = {`/timeline/${timeline.timeline_id}`}> <p>-{timeline.name}</p> </Link>
                 <div className = "home_buttons">
                     <Link to = {`/edittimeline/${timeline.timeline_id}`}><button className = "home_button">Edit</button></Link>
                     <Link to = {`/deletetimeline/${timeline.timeline_id}`}><button className = "home_button">Delete</button></Link>

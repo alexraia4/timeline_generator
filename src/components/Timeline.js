@@ -3,6 +3,10 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import '../css/timeline.css';
 
+import '../css/stupidfix.css';
+
+
+
 
 class Timeline extends Component {
     
@@ -11,7 +15,8 @@ class Timeline extends Component {
         this.state = {
           timeline: {},
           events: [],
-          yearsToRender: []
+          yearsToRender: [],
+          masterLine: []
         };
        
     }
@@ -45,18 +50,36 @@ class Timeline extends Component {
             }
             this.setState({events: events.data, yearsToRender: arr});
             
+
+            this.createMasterLine(arr, events.data);
         })
         
     }
 
     createMasterLine(years, events) {
+        let masterLine = [];
+        years.forEach(year => {
+            let yearObj = {year, events: []};
+            events.forEach(event => {
+                if (event.year === year) {
+                    yearObj.events.push(event);
+                }
+            });
+            masterLine.push(yearObj);
 
+        });
+
+        this.setState({masterLine: masterLine})
     }
+        
+        
+        
 
 
     render() {
 
-
+//        THE QUICK FIX
+/////////////////////////////////////////////
         const masterLine = this.state.yearsToRender.map((year, index) => {
             
             
@@ -64,9 +87,9 @@ class Timeline extends Component {
             for (let k = 0; k < this.state.events.length; k++) {
                 if (year === this.state.events[k].year) {
                     return (
-                        <div key = { index }>
-                            <p>{year}</p>
-                            <p>{this.state.events[k].name}</p>
+                        <div key = { index } className = "specificYear">
+                            <h2>{year}</h2>
+                            <p className = "specificEvent_title">{this.state.events[k].name}</p>
                             <p>- {this.state.events[k].content}</p>
                         </div>
                     );
@@ -76,12 +99,14 @@ class Timeline extends Component {
             ///return default if year has no events
             return (
                 <div key = { index } className = "specificYear">
-                    <p>{year}</p>
+                    <h2>{year}</h2>
                 </div>
             );
             
         });
-        
+///////////////////////////////////////
+
+
         return (
             <div className = "timelineComp">
                 <div className = "topRow">
