@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { UserContext } from '../context/UserContext.js'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../css/login.css'
@@ -8,20 +9,21 @@ function Login() {
       let history = useHistory()
       const [email, setEmail] = useState("")
       const [password, setPassword] = useState("")
+      const { user, setUser } = useContext(UserContext);
     
     
       const login = () => {
             axios.post('/auth/login', {email, password})
             .then(user => {
                   if (user.data === "User not found" || user.data === "wrong password bro"){
-                        alert (user.data);
+                        alert (user.data)
                   }
                   else{
                         setUser({
                               uid: user.data.uid,
                               email: user.data.email
-                        });
-                        history.push("/home");
+                        })
+                        history.push("/home")
                   }
             })  
       }
@@ -32,8 +34,8 @@ function Login() {
                   setUser({
                         uid: user.data.uid,
                         email: user.data.email
-                  });
-                  history.push("/home");
+                  })
+                  history.push("/home")
             })  
       }
 
@@ -59,4 +61,4 @@ function Login() {
       )
 }
 
-export default Login;
+export default Login
