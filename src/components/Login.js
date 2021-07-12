@@ -1,33 +1,39 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import '../css/login.css';
+import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+import '../css/login.css'
 
 function Login() {
     
-      const [username, setUsername] = useState("");
-      const [password, setPassword] = useState("");
+      let history = useHistory()
+      const [email, setEmail] = useState("")
+      const [password, setPassword] = useState("")
     
     
       const login = () => {
-            const {username, password} = this.state;
-            axios.post('/auth/login', {username, password})
+            axios.post('/auth/login', {email, password})
             .then(user => {
                   if (user.data === "User not found" || user.data === "wrong password bro"){
                         alert (user.data);
                   }
                   else{
-                        this.props.loginUser(user.data);
-                        this.props.history.push("/home");
+                        setUser({
+                              uid: user.data.uid,
+                              email: user.data.email
+                        });
+                        history.push("/home");
                   }
             })  
       }
 
       const register = () => {
-            const {username, password} = this.state;
-            axios.post('/auth/create', {username, password})
+            axios.post('/auth/create', {email, password})
             .then(user => {
-                  this.props.loginUser(user.data);
-                  this.props.history.push("/home");
+                  setUser({
+                        uid: user.data.uid,
+                        email: user.data.email
+                  });
+                  history.push("/home");
             })  
       }
 
@@ -39,15 +45,15 @@ function Login() {
                   </div>
                   <div className = "login_email">
                         <p>Email</p>
-                        <input type = "text" onChange = {e => this.setState({username: e.target.value})}/>
+                        <input type = "text" onChange = {e =>  setEmail(e.target.value)}/>
                   </div>
                   <div className = "login_password">
                         <p>Password</p>
-                        <input type = "password" onChange = {e => this.setState({password: e.target.value})}/>
+                        <input type = "password" onChange = {e => setPassword(e.target.value)}/>
                   </div>
                   <div className = "login_buttons">
-                        <button className = "login_button" onClick={this.login}>Login</button>
-                        <button className = "login_button" onClick={this.register}>Register</button>
+                        <button className = "login_button" onClick={login}>Login</button>
+                        <button className = "login_button" onClick={register}>Register</button>
                   </div>
             </div>
       )
