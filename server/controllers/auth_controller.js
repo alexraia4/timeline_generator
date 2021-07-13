@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 module.exports = {
 
     create: async (req, res) => {
-        let {email, password} = req.body;
+        let { email, password } = req.body;
         const db = req.app.get("db");
         
         let result = await db.auth.read_user([email]);
@@ -21,9 +21,9 @@ module.exports = {
     },
 
     login: async (req, res) => {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
         const db = req.app.get("db");
-        const foundUser = await db.auth.read_user([username]);
+        const foundUser = await db.auth.read_user([email]);
         const user = foundUser[0];
         if (!user) {
           return res.status(201).send('User not found');
@@ -32,7 +32,7 @@ module.exports = {
         if (!isAuthenticated) {
           return res.status(201).send('wrong password bro');
         }
-        req.session.user = {username: user.user_name, uid: user.tool_user_id}
+        req.session.user = {email: user.email, uid: user.tool_user_id}
         return res.status(201).send(req.session.user);
         
     },
@@ -43,16 +43,16 @@ module.exports = {
     },
 
     update: async (req, res) => {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
         const uid = req.session.user.uid;
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const registeredUser = await req.app.get('db').auth.update_user([username, hash, uid])
+        const registeredUser = await req.app.get('db').auth.update_user([email, hash, uid])
         
         //const registeredUser = await req.app.get('db').auth.read_user([uid])
         
         const user = registeredUser[0];
-        req.session.user = {username: user.user_name, uid: user.tool_user_id}
+        req.session.user = {email: user.email, uid: user.tool_user_id}
         return res.status(201).send(req.session.user);
     },
 

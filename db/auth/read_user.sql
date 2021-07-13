@@ -1,2 +1,2 @@
 SELECT * FROM tool_user
-WHERE user_name = $1;
+WHERE email = $1;
