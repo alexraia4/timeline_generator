@@ -9,7 +9,7 @@ function Login() {
       let history = useHistory()
       const [email, setEmail] = useState("")
       const [password, setPassword] = useState("")
-      const { user, setUser } = useContext(UserContext);
+      const { setUser } = useContext(UserContext);
     
     
       const login = () => {
@@ -29,13 +29,14 @@ function Login() {
       }
 
       const register = () => {
+            console.log(email, password);
             axios.post('/auth/create', {email, password})
             .then(user => {
                   setUser({
                         uid: user.data.uid,
                         email: user.data.email
                   })
-                  history.push("/home")
+                  //history.push("/home")
             })  
       }
 

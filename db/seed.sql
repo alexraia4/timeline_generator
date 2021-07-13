@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS tool_user, timeline, timeline_event;
 
 CREATE TABLE IF NOT EXISTS tool_user (
     tool_user_id SERIAL PRIMARY KEY,
-    user_name    VARCHAR NOT NULL,
+    email        VARCHAR NOT NULL,
     hash         VARCHAR NOT NULL,
     created      TIMESTAMP
 );
