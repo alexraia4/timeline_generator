@@ -6,51 +6,52 @@ import '../css/home.css'
 
 function Home () {
 
+      const { user, setUser } = useContext(UserContext);
 
+      let history = useHistory()
+      const [timelines, setTimelines] = useState([])
 
-      // let history = useHistory()
-      // const [timelines, setTimelines] = useState([])
+      useEffect(() => {
+            axios.get('/timeline/readall')
+            .then(timelines => {
+                  setTimelines(timelines.data);
+            })
+      }, [])
 
-      // useEffect(() => {
-      //       axios.get('/timeline/readall')
-      //       .then(timelines => {
-      //             this.setState({timelines: timelines.data});
-      //       })
-      // }, [])
+      const logout = () => {
+            axios.get('/auth/logout')
+            .then(thing => {
+                  history.push("/")
+            })       
+      }
 
-      // const logout = () => {
-      //       axios.get('/auth/logout')
-      //       .then(thing => {
-      //             history.push("/")
-      //       })       
-      // }
-
-      // const timelineLinks = this.state.timelines.map((timeline, i) => (
-      //       <div className = "home_timeline" key = { i }>
-      //             <Link to = {`/timeline/${timeline.timeline_id}`}> <p>-{timeline.name}</p> </Link>
-      //             <div className = "home_buttons">
-      //                   <Link to = {`/edittimeline/${timeline.timeline_id}`}><button className = "home_button">Edit</button></Link>
-      //                   <Link to = {`/deletetimeline/${timeline.timeline_id}`}><button className = "home_button">Delete</button></Link>
-      //             </div>
-      //       </div>
-      // )
+      
+      const timelineLinks = timelines.map((timeline, i) => (
+            <div className = "home_timeline" key = { i }>
+                  <Link to = {`/timeline/${timeline.timeline_id}`}> <p>-{timeline.name}</p> </Link>
+                  <div className = "home_buttons">
+                        <Link to = {`/edittimeline/${timeline.timeline_id}`}><button className = "home_button">Edit</button></Link>
+                        <Link to = {`/deletetimeline/${timeline.timeline_id}`}><button className = "home_button">Delete</button></Link>
+                  </div>
+            </div>
+      ))
         
-      // return (
-      //       <div className = "home">
-      //             <header>
-      //                   <p>Have fun creating, {this.props.user.username}</p>
-      //             </header>
-      //             <p className = "home_myTimelines">My Timelines:</p>
-      //             <div className = "home_timelines">
-      //                   {timelineLinks}
-      //             </div>
-      //             <div className = "home_bottomButtons">
-      //                   <Link to = {"/createnewtimeline"}><button className = "home_bottomButton">Create</button></Link>
-      //                   <Link to = {"/timeline/2"}><button className = "home_bottomButton">World History</button></Link>
-      //                   <button onClick = {this.logout} className = "home_bottomButton">Logout</button>
-      //             </div>
-      //       </div>
-      // );
+      return (
+            <div className = "home">
+                  <header>
+                        <p>Have fun creating, {user.email}</p>
+                  </header>
+                  <p className = "home_myTimelines">My Timelines:</p>
+                  <div className = "home_timelines">
+                        {timelineLinks}
+                  </div>
+                  <div className = "home_bottomButtons">
+                        <Link to = {"/createnewtimeline"}><button className = "home_bottomButton">Create</button></Link>
+                        <Link to = {"/timeline/2"}><button className = "home_bottomButton">World History</button></Link>
+                        <button onClick = {logout} className = "home_bottomButton">Logout</button>
+                  </div> 
+            </div>
+      );
 
 }
 export default Home;

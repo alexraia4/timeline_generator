@@ -36,8 +36,11 @@ function Login() {
                         uid: user.data.uid,
                         email: user.data.email
                   })
-                  //history.push("/home")
-            })  
+                  history.push("/home")
+            }) 
+            .catch(()=>{
+                  alert('derp');
+            }) 
       }
 
       return (
