@@ -1,70 +1,58 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import '../css/edittimeline.css';
 
-class EditTimeline extends Component {
+function EditTimeline (props) {
+
+      let history = useHistory()
+      const [name, setName] = useState("")
+      const [startYear, setStartYear] = useState(0)
+      const [endYear, setEndYear] = useState(null)
     
-    constructor() {
-        super();
-        this.state = {
-          name: "",
-          startDate: 0,
-          endDate: null,
-        };
-        this.update = this.update.bind(this);
-    }
 
-    componentDidMount() {
-        axios.get(`/timeline/readone/${this.props.match.params.tid}`)
-        .then(timeline => {
-            const {name, start_year, end_year} = timeline.data[0];
-            this.setState({name: name, startDate: start_year, endDate: end_year})
-        })
-    }
+      useEffect(() => {
+            axios.get(`/timeline/readone/${props.match.params.tid}`)
+            .then(timeline => {
+                  const {name, start_year, end_year} = timeline.data[0];
+                  setName(name)
+                  setStartYear(start_year)
+                  setEndYear(end_year)
+            })
+      }, [])
 
 
-    update() {
-        const {name, startDate, endDate} = this.state;
-        const tid = this.props.match.params.tid
-        
-        axios.put(`/timeline/update/${tid}`, {name, startDate, endDate})
-        .then(user => {
-                this.props.history.push("/home");
-        })
-        
-    }
-    
-    render() {
-        
-        return (
+      const update = () => {
+            const tid = props.match.params.tid
+            axios.put(`/timeline/update/${tid}`, {name, startYear, endYear})
+            .then(thing => {
+                  history.push("/home");
+            })
+      }
+           
+      return (
             <div className = "editTimeline">
-                <div>
-                    <p>Name:</p>
-                    <input type = "text" onChange = {e => this.setState({name: e.target.value})} value = {`${this.state.name}`}/>
-                </div>
+                  <div>
+                        <p>Name:</p>
+                        <input type = "text" onChange = {e => setName(e.target.value)} value = {`${name}`}/>
+                  </div>
                 
-                <div>
-                    <p>Start Year:</p>
-                    <input type = "text" onChange = {e => this.setState({startDate: e.target.value})} value = {`${this.state.startDate}`}/>
-                </div>
-                
-                <div>
-                    <p>End Year:</p>
-                    <input type = "text" placeholder="optional" onChange = {e => this.setState({endDate: e.target.value})} />
-                </div>
-                
-                <div className = "editTimeline_buttons">
-                    <button onClick = {this.update} className = "editTimeline_button">Update</button>
-                    <Link to = {"/home"}><button className = "editTimeline_button">Back</button></Link>
-                </div>
-                
-                
-            </div>
-            
-        )
-    }
-}
+                  <div>
+                        <p>Start Year:</p>
+                        <input type = "text" onChange = {e => setStartYear(e.target.value)} value = {`${startYear}`}/>
+                  </div>
 
+                  <div>
+                        <p>End Year:</p>
+                        <input type = "text" placeholder="optional" onChange = {e => setEndYear(e.target.value)} value = {`${endYear}`}/>
+                  </div>
+                
+                  <div className = "editTimeline_buttons">
+                        <button onClick = {update} className = "editTimeline_button">Update</button>
+                        <Link to = {"/home"}><button className = "editTimeline_button">Back</button></Link>
+                  </div>
+            </div>
+      )
+}
 
 export default EditTimeline;

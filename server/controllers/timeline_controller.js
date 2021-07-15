@@ -27,10 +27,10 @@ module.exports = {
 
     update: (req, res) => {
         const dbInstance = req.app.get('db');
-        const {name, startDate, endDate} = req.body;
+        const {name, startYear, endYear} = req.body;
         const uid = req.session.user.uid;
         const tid = req.params.tid;
-        dbInstance.timeline.update_timeline([name, uid, startDate, endDate, tid]);
+        dbInstance.timeline.update_timeline([name, uid, startYear, endYear, tid]);
         return res.status(200).send("Updated!!");
     },
 
