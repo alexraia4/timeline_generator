@@ -9,7 +9,15 @@
     /* justify-content: space-around; */
     align-items: center;
 
-    background-color: rgb(52, 235, 174);
+    background-color: rgb(112, 134, 235);
     font-family: 'Varela Round', sans-serif;
+}
+
+@media only screen and (max-width: 900px) {
+      
+      .app {
+            width: 100vw;
+            height: 100vh;
+      }
 }
 
