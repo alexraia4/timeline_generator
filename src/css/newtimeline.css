@@ -36,3 +36,22 @@
 
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1560px) {
+      
+      .newTimeline {
+            height: 80vh;
+            width: 60vw;
+
+            margin-top: 0%;
+      }
+
+}
+
+@media only screen and (max-width: 900px) {
+      
+      .newTimeline {
+            height: 100vh;
+            width: 100vw;
+      }
+}

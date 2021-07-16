@@ -95,3 +95,28 @@
     cursor: pointer;
 }
 
+@media only screen and (max-width: 1560px) {
+      
+      .home {
+            height: 80vh;
+            width: 60vw;
+
+            margin-top: 0%;
+      }
+
+      .home_timelines {
+            width: 80%;
+      }
+}
+
+@media only screen and (max-width: 900px) {
+      
+      .home {
+            height: 100vh;
+            width: 100vw;
+      }
+
+      .home_timelines {
+            width: 80%;
+      }
+}

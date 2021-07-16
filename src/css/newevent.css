@@ -36,3 +36,22 @@
 
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1560px) {
+      
+      .newEvent {
+            height: 80vh;
+            width: 60vw;
+
+            margin-top: 0%;
+      }
+
+}
+
+@media only screen and (max-width: 900px) {
+      
+      .newEvent {
+            height: 100vh;
+            width: 100vw;
+      }
+}

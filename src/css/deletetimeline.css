@@ -39,3 +39,22 @@
 
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1560px) {
+      
+      .deleteTimeline {
+            height: 80vh;
+            width: 60vw;
+
+            margin-top: 0%;
+      }
+
+}
+
+@media only screen and (max-width: 900px) {
+      
+      .deleteTimeline {
+            height: 100vh;
+            width: 100vw;
+      }
+}
