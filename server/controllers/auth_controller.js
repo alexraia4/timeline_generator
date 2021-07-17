@@ -1,5 +1,19 @@
 const bcrypt = require('bcryptjs');
 
+/////nodemailer stuff/////////////////
+var nodemailer = require('nodemailer');
+require("dotenv").config();
+const { GMAIL_ACCOUNT, GMAIL_PASS } = process.env;
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: `${GMAIL_ACCOUNT}`,
+        pass: `${GMAIL_PASS}`
+    }
+});
+//////////////////////////////////
+
 module.exports = {
 
     create: async (req, res) => {
@@ -17,6 +31,26 @@ module.exports = {
         const registeredUser = await db.auth.create_user([email, hash]);
         const user = registeredUser[0];
         req.session.user = {email: user.user_email, uid: user.tool_user_id}
+
+        /////more nodemailer stuff/////
+        var mailOptions = {
+            from: `${GMAIL_ACCOUNT}`,
+            to: `${email}`,
+            subject: 'Thank you for signing up with the Timeline Generation app',
+            text: 'This email address has just been registered with the Timeline Generation app'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+        /////////////////////////////////////
+
+
+
         return res.status(201).send(req.session.user);
     },
 
