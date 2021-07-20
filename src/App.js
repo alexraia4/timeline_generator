@@ -1,15 +1,17 @@
 import { Component } from 'react';
-import {HashRouter} from "react-router-dom"
+import {BrowserRouter, HashRouter} from "react-router-dom"
 import routes from './routes.js';
 import './css/app.css';
+
+const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
 
 class App extends Component{
   render() {
     return (
       <div className = "app">
-        <HashRouter>
+        <Router>
           {routes}
-        </HashRouter>
+        </Router>
       </div>
       
     )

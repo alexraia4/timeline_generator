@@ -60,4 +60,14 @@ app.get(    "/event/readall/:tid"   , auth.usersOnly, auth.doIownThisTimeline, e
 //app.delete( "/event/delete/:eid"    , auth.usersOnly, auth.doIownThisEvent   , event_controller.delete);
 
 
+const path = require('path');
+
+
+//has to be after routes
+app.use(express.static(__dirname + '/../build'))
+app.get('*', (req, res) => {
+     res.sendFile(path.join(__dirname, '../build/index.html')) 
+})
+
+
 app.listen(SERVER_PORT, () => console.log(`Server is listening on port ${SERVER_PORT}`));
